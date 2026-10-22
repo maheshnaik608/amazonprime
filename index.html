@@ -1,0 +1,356 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Video - Home</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f171e;
+            color: white;
+        }
+
+        header {
+            background: #101820;
+            padding: 18px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            color: #00a8e1;
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #00a8e1;
+        }
+
+        .search {
+            padding: 10px;
+            border: 1px solid #52616b;
+            border-radius: 5px;
+            background: #1b2732;
+            color: white;
+            width: 190px;
+        }
+
+        .hero {
+            min-height: 420px;
+            padding: 75px 6%;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(90deg, #0f171e 10%, #0f171eaa 55%, transparent),
+                url("https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&w=1600&q=80")
+                center/cover;
+        }
+
+        .hero-content {
+            max-width: 520px;
+        }
+
+        .hero h1 {
+            font-size: 43px;
+            margin-bottom: 18px;
+        }
+
+        .hero p {
+            color: #ddd;
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        .btn {
+            border: none;
+            background: #00a8e1;
+            color: #06121a;
+            padding: 13px 25px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #38c6f4;
+        }
+
+        .section {
+            padding: 28px 5%;
+        }
+
+        .section h2 {
+            font-size: 23px;
+            margin-bottom: 20px;
+        }
+
+        .movies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+            gap: 18px;
+        }
+
+        .movie {
+            background: #192631;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.25s;
+        }
+
+        .movie:hover {
+            transform: scale(1.04);
+        }
+
+        .movie img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .movie-info {
+            padding: 13px;
+        }
+
+        .movie-info h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .movie-info p {
+            color: #b8c5ce;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .watch-btn {
+            width: 100%;
+            padding: 9px;
+            border: none;
+            background: #263b4a;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .watch-btn:hover {
+            background: #00a8e1;
+            color: #06121a;
+        }
+
+        #message {
+            padding: 15px 5%;
+            color: #00c8ff;
+            display: none;
+        }
+
+        footer {
+            background: #080e13;
+            text-align: center;
+            padding: 25px;
+            color: #9baab5;
+            margin-top: 30px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                justify-content: center;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 14px;
+            }
+
+            .hero {
+                min-height: 350px;
+                padding: 40px 6%;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .movies {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .movie img {
+                height: 190px;
+            }
+
+            .search {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">prime video</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#movies">Movies</a>
+        <a href="#series">TV Shows</a>
+        <a href="#popular">Popular</a>
+    </nav>
+
+    <input
+        type="search"
+        class="search"
+        id="search"
+        placeholder="Search movies..."
+        aria-label="Search movies"
+    >
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Welcome to Prime Video</h1>
+        <p>
+            Discover movies, exciting adventures, and unforgettable
+            stories. Find your next favorite movie in one place.
+        </p>
+        <button class="btn" onclick="showMessage('Explore the movie collection below!')">
+            Explore Now
+        </button>
+    </div>
+</section>
+
+<div id="message" role="status"></div>
+
+<section class="section" id="movies">
+    <h2>Popular Movies</h2>
+
+    <div class="movies" id="movie-list">
+
+        <article class="movie" data-title="Action Heroes">
+            <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?auto=format&fit=crop&w=500&q=80" alt="Action movie artwork">
+            <div class="movie-info">
+                <h3>Action Heroes</h3>
+                <p>Action · Adventure</p>
+                <button class="watch-btn" onclick="watchMovie('Action Heroes')">Watch Now</button>
+            </div>
+        </article>
+
+        <article class="movie" data-title="The Adventure">
+            <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=500&q=80" alt="Cinema scene">
+            <div class="movie-info">
+                <h3>The Adventure</h3>
+                <p>Adventure · Drama</p>
+                <button class="watch-btn" onclick="watchMovie('The Adventure')">Watch Now</button>
+            </div>
+        </article>
+
+        <article class="movie" data-title="Dark Mystery">
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80" alt="Mysterious landscape">
+            <div class="movie-info">
+                <h3>Dark Mystery</h3>
+                <p>Thriller · Mystery</p>
+                <button class="watch-btn" onclick="watchMovie('Dark Mystery')">Watch Now</button>
+            </div>
+        </article>
+
+        <article class="movie" data-title="Love Forever">
+            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=500&q=80" alt="Romantic scene">
+            <div class="movie-info">
+                <h3>Love Forever</h3>
+                <p>Romance · Drama</p>
+                <button class="watch-btn" onclick="watchMovie('Love Forever')">Watch Now</button>
+            </div>
+        </article>
+
+        <article class="movie" data-title="Wild Planet">
+            <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=500&q=80" alt="Wildlife in nature">
+            <div class="movie-info">
+                <h3>Wild Planet</h3>
+                <p>Documentary · Nature</p>
+                <button class="watch-btn" onclick="watchMovie('Wild Planet')">Watch Now</button>
+            </div>
+        </article>
+
+        <article class="movie" data-title="Space Journey">
+            <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=500&q=80" alt="Planet Earth from space">
+            <div class="movie-info">
+                <h3>Space Journey</h3>
+                <p>Sci-Fi · Adventure</p>
+                <button class="watch-btn" onclick="watchMovie('Space Journey')">Watch Now</button>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<section class="section" id="series">
+    <h2>Explore TV Shows</h2>
+    <p>Discover new stories and entertainment for every mood.</p>
+</section>
+
+<section class="section" id="popular">
+    <h2>Popular on Prime</h2>
+    <p>Browse the collection and search for a title you like.</p>
+</section>
+
+<footer>
+    <p>Prime Video Style Demo | Built with HTML, CSS and JavaScript</p>
+    <p style="margin-top: 10px;">
+        This is a practice project and is not affiliated with Amazon.
+    </p>
+</footer>
+
+<script>
+    function showMessage(message) {
+        const box = document.getElementById("message");
+        box.textContent = message;
+        box.style.display = "block";
+    }
+
+    function watchMovie(title) {
+        showMessage(
+            title + " selected. Add a licensed video URL to enable playback."
+        );
+    }
+
+    document.getElementById("search").addEventListener("input", function () {
+        const searchText = this.value.toLowerCase();
+
+        document.querySelectorAll(".movie").forEach(function (movie) {
+            const title = movie.dataset.title.toLowerCase();
+            movie.style.display = title.includes(searchText) ? "" : "none";
+        });
+    });
+</script>
+
+</body>
+</html>
+```
